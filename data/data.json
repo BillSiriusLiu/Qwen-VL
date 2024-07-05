@@ -1,0 +1,16 @@
+[
+    {
+        "id":"1",
+        "conversations":
+        [
+            {
+                "from":"user",
+                "value":"你是一个人形机器人，你可以执行的技能有：\n1. 识别：DoRecognize(object) 目标检测满足用户指令的某人或某物\n2. 靠近：CloseTo(object) 目标跟踪满足用户指令的某人或某物\n3. 视觉问答：Vqa(query) 你通过图片回答用户的问题\n4. 转圈搜索目标：Search(object)\n5. 抓取：Grasp(object)\n6. 放置：Put(object, place) 将object放置在place\n7. 拉：Pull(object, direction) 向direction方向拉object\n8. 推按：Push(object, direction) 向direction方向推按object\n9. 说话：Speak(query)\n10. 等候：Wait(until) 等候至until为真\n根据用户指令和图片中的情况，规划出你的执行动作步骤\nPicture 1: <img>a.jpg</img>\n指令：请帮我买一杯美式咖啡。\n"
+            },
+            {
+                "from": "assistant",
+                "value":"[\n{\n\"index\":1,\n\"step\": \"DoRecognize(object='咖啡柜台')\",\n\"description\":\"识别咖啡柜台\"\n},\n{\n\"index\":2,\n\"ste\":\"CloseTo(object='咖啡柜台')\",\n\"description\":\"靠近咖啡柜台\"\n},\n{\n\"index\":3,\n\"step\": \"DoRecognize(object='咖啡店员')\",\n\"description\":\"识别咖啡店员\"\n},\n{\n\"index\":4,\n\"step\":\"CloseTo(object='咖啡店员')\",\n\"description\":\"靠近咖啡店员\"\n},\n{\n\"index\":5,\n\"step\":\"Speak(query='请给我一杯美式咖啡')\",\n\"description\":\"用户让我帮忙买美式咖啡\"\n},\n{\n\"index\":6,\n\"step\":\"Wait(until='咖啡做好')\",\n\"description\":\"等待咖啡做好\"\n},\n{\n\"index\":7,\n\"step\":\"Grasp(object='燕麦拿铁')\",\n\"description\":\"抓取燕麦拿铁\"\n},\n{\n\"index\":8,\n\"step\":\"Speak(query='谢谢')\",\n\"description\":\"表示感谢\"\n},\n{\n\"index\":9,\n\"step\":\"Done\",\n\"description\":\"完成\"\n}\n]\n"
+            }
+        ]
+    }
+  ]
