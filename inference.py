@@ -39,7 +39,7 @@ with open(task_prompt_path, 'r') as f:
 query = init
 init_idx = task.find("[Initial Environment Image]")
 current_idx = task.find("[Environment Image after Executing Some Steps]")
-query += task:init_idx+27]
+query += task[:init_idx+27]
 query += f'<img>{image1_path}</img>'
 query += task[init_idx+27:current_idx+46]
 query += f'<img>{image2_path}</img>'
