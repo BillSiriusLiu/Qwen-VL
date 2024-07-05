@@ -12,28 +12,46 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 if not hasattr(tokenizer, 'model_dir'):
     tokenizer.model_dir = model_dir
+
 # use bf16
 # model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", trust_remote_code=True, bf16=True).eval()
 # use fp16
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True, fp16=True).eval()
-# use cpu
-# model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="cpu", trust_remote_code=True).eval()
-# use auto
+
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True).eval()
 
-# Specify hyperparameters for generation (No need to do this if you are using transformers>=4.32.0)
-# model.generation_config = GenerationConfig.from_pretrained(model_dir, trust_remote_code=True)
+
 
 # 1st dialogue turn
 # Either a local path or an url between <img></img> tags.
-image_path = 'img/fridge.jpg'
-response, history = model.chat(tokenizer, query=f'<img>{image_path}</img>这是什么', history=None)
+image1_path = 'img/coke_laptop/test2_3person.jpg'
+image2_path = 'img/coke_laptop/test5_coke.jpg'
+init_prompt_path = 'prompt/init.txt'
+task_prompt_path = 'prompt/task.txt'
+init, task = "", ""
+with open(init_prompt_path, 'r') as f:
+    for line in f:
+        init += line
+with open(task_prompt_path, 'r') as f:
+    for line in f:
+        task += line
+
+query = init
+init_idx = task.find("[Initial Environment Image]")
+current_idx = task.find("[Environment Image after Executing Some Steps]")
+query += task:init_idx+27]
+query += f'<img>{image1_path}</img>'
+query += task[init_idx+27:current_idx+46]
+query += f'<img>{image2_path}</img>'
+query += task[current_idx+46:]
+
+response, history = model.chat(tokenizer, query=query, history=None)
 print(response)
 
 
 # 2nd dialogue turn
-response, history = model.chat(tokenizer, '冰箱是什么颜色的', history=history)
-print(response)
+#response, history = model.chat(tokenizer, '冰箱是什么颜色的', history=history)
+#print(response)
 
 #image = tokenizer.draw_bbox_on_latest_picture(response, history)
 #if image:
