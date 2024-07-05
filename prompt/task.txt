@@ -3,7 +3,9 @@
 [Task Instruction]
 给我去买一杯23块的咖啡。
 
-[Plan]
+[Initial Environment Image]
+
+[Initial Plan]
 [
     {
         "index":1,
