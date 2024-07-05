@@ -1,0 +1,41 @@
+
+[Task Instruction]
+去跟拿可乐的人握个手并解释为什么找他
+
+[Initial Environment Image]
+
+[Inital Plan]
+[
+    {
+        "index":1,
+        "step":"DoRecognize(object='拿可乐的人')",
+        "description":"识别拿可乐的人"
+    },
+    {
+        "index":2,
+        "step":"CloseTo(object='拿可乐的人')",
+        "description":"靠近拿可乐的人"
+    },
+    {
+        "index":3,
+        "step":"ShakeHand()",
+        "description:"握手"
+    },
+    {
+        "index":4,
+        "step":"VQA(query='为什么找他')",
+        "description:"回答问题"
+    }
+    {
+        "index":5,
+        "step":"Done",
+        "description":"完成"
+    }
+]
+
+[Finished Steps]
+List(DoRecognize(object='拿可乐的人'))
+
+[Environment Image after Executing Finished Steps]
+
+[Plan]
