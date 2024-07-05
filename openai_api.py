@@ -452,7 +452,7 @@ def _get_args():
         "-c",
         "--checkpoint-path",
         type=str,
-        default="QWen/QWen-7B-Chat",
+        default="../7Bqw_vl_chat",
         help="Checkpoint name or path, default to %(default)r",
     )
     parser.add_argument(
