@@ -1,40 +1,58 @@
 
 [Task Instruction]
-去跟拿可乐的人握个手并解释为什么找他
+给我去买一杯23块的咖啡。
 
-[Initial Environment Image]
-
-[Inital Plan]
+[Plan]
 [
     {
         "index":1,
-        "step":"DoRecognize(object='拿可乐的人')",
-        "description":"识别拿可乐的人"
+        "step": "DoRecognize(object='咖啡柜台')",
+        "description":"识别咖啡柜台"
     },
     {
         "index":2,
-        "step":"CloseTo(object='拿可乐的人')",
-        "description":"靠近拿可乐的人"
+        "step":"CloseTo(object='咖啡柜台')",
+        "description":"靠近咖啡柜台"
     },
     {
         "index":3,
-        "step":"ShakeHand()",
-        "description:"握手"
+        "step": "DoRecognize(object='咖啡店员')",
+        "description":"识别咖啡店员"
     },
     {
         "index":4,
-        "step":"VQA(query='为什么找他')",
-        "description:"回答问题"
-    }
+        "step":"CloseTo(object='咖啡店员')",
+        "description":"靠近咖啡店员"
+    },
     {
         "index":5,
+        "step":"Speak(query='请给我一杯燕麦拿铁')",
+        "description:"菜单上只有燕麦拿铁23元，所以买一杯燕麦拿铁"
+    },
+    {
+        "index":6,
+        "step":"Wait(until='咖啡做好')",
+        "description":"等待咖啡做好"
+    },
+    {
+        "index":7,
+        "step":"Grasp(object='燕麦拿铁')",
+        "description":"抓取燕麦拿铁"
+    },
+    {
+        "index":8,
+        "step":"Speak(query='谢谢')",
+        "description":"表示感谢"
+    },
+    {
+        "index":9,
         "step":"Done",
         "description":"完成"
     }
 ]
 
 [Finished Steps]
-List(DoRecognize(object='拿可乐的人'))
+List(DoRecognize(object='咖啡柜台'), CloseTo(object='咖啡柜台'))
 
 [Environment Image after Executing Finished Steps]
 

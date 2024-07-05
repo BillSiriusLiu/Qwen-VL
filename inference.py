@@ -24,8 +24,8 @@ model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust
 
 # 1st dialogue turn
 # Either a local path or an url between <img></img> tags.
-image1_path = 'img/coke_laptop/test2_3person.jpg'
-image2_path = 'img/coke_laptop/test5_coke.jpg'
+image1_path = 'img/cafe/cafe1.jpg'
+image2_path = 'img/cafe/cafe2.jpg'
 init_prompt_path = 'prompt/init.txt'
 task_prompt_path = 'prompt/task.txt'
 init, task = "", ""
