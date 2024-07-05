@@ -19,6 +19,7 @@
 请按如下示例格式给出回答[Plan]。
 
 示例
+'''
 [Task Instruction]
 去跟拿苹果的人摇尾巴并解释为什么找他
 
@@ -76,3 +77,5 @@ List(DoRecognize(object='拿苹果的人'), CloseTo(object='拿苹果的人'))
         "description":"完成"
     }
 ]
+'''
+
