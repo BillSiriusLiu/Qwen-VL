@@ -7,6 +7,7 @@ revision = 'v1.0.0'
 
 model_dir = "../7Bqw_vl_chat"
 torch.manual_seed(1234)
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 if not hasattr(tokenizer, 'model_dir'):
@@ -14,11 +15,11 @@ if not hasattr(tokenizer, 'model_dir'):
 # use bf16
 # model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", trust_remote_code=True, bf16=True).eval()
 # use fp16
-model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", trust_remote_code=True, fp16=True).eval()
+model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True, fp16=True).eval()
 # use cpu
 # model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="cpu", trust_remote_code=True).eval()
 # use auto
-model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", trust_remote_code=True).eval()
+model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True).eval()
 
 # Specify hyperparameters for generation (No need to do this if you are using transformers>=4.32.0)
 # model.generation_config = GenerationConfig.from_pretrained(model_dir, trust_remote_code=True)
