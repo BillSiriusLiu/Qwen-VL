@@ -36,6 +36,32 @@
 <br><br>
 
 ---
+
+## Personal Update by Bill Liu
+
+### New Features
+
+新增 inference.py 文件，用于多图文本prompt拼接推理 \
+prompt/ 文件夹存储文本prompt \
+img/ 文件夹存储图像 \
+get_checkpoint.py 文件用来下载模型参数 \
+data/data.json 是微调json示例文件 \
+data/a.jpg 是微调示例图片数据
+
+### Quick Start
+
+设置好模型、图片、prompt路径后，运行inference.py 进行推理 \
+设置好 finetune/ 文件夹下的脚本中的参数、data/中的数据集后，运行finetune/ 文件夹中的脚本进行微调
+
+### Docker on Server
+
+该project的docker container在tj5-ai-train-g8a100-01 上 \
+名为bill_qw \
+project 根目录在~/Qwen-VL/ \
+~/7Bqw_vl_chat/ 是模型参数
+
+---
+
 ## Qwen-VL-Plus & Qwen-VL-Max
 
 Qwen-Vl-Plus and Qwen-VL-Max are the upgraded and latest versions of the Qwen-VL model family, currently supporting access for free through <a href="https://huggingface.co/spaces/Qwen/Qwen-VL-Max">🤗</a>, <a href="https://modelscope.cn/studios/qwen/Qwen-VL-Max/summary">🤖</a>, [Web pages](https://qianwen.aliyun.com), [APP](http://ofasys-wlcb.oss-accelerate-overseas.aliyuncs.com/QwenVL/blog/app_qrcode.jpg) and [APIs](https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start/).
