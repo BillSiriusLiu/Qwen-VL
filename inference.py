@@ -5,9 +5,9 @@ import torch
 model_id = 'qwen/Qwen-VL-Chat'
 revision = 'v1.0.0'
 
-model_dir = "../7Bqw_vl_chat"
+model_dir = "../Qwen-VL-Chat-7B"
 torch.manual_seed(1234)
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 if not hasattr(tokenizer, 'model_dir'):
@@ -16,7 +16,7 @@ if not hasattr(tokenizer, 'model_dir'):
 # use bf16
 # model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", trust_remote_code=True, bf16=True).eval()
 # use fp16
-model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True, fp16=True).eval()
+#model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True, fp16=True).eval()
 
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map=device, trust_remote_code=True).eval()
 
