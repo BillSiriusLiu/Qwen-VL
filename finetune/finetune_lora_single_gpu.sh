@@ -3,10 +3,10 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 DIR=`pwd`
 
 
-MODEL="Qwen/Qwen-VL-Chat" #"Qwen/Qwen-VL-Chat"/"Qwen/Qwen-VL" # Set the path if you do not want to load from huggingface directly
+MODEL="/home/robot/bill/Embodied_Planner/Qwen-VL-Chat-7B" #"Qwen/Qwen-VL-Chat"/"Qwen/Qwen-VL" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-DATA="path_to_data"
+DATA="/home/robot/bill/Embodied_Planner/Qwen-VL/data/data.json"
 
 export CUDA_VISIBLE_DEVICES=0
 
