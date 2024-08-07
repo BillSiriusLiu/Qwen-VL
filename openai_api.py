@@ -452,7 +452,7 @@ def _get_args():
         "-c",
         "--checkpoint-path",
         type=str,
-        default="../7Bqw_vl_chat",
+        default="../Qwen-VL-Chat-7B",
         help="Checkpoint name or path, default to %(default)r",
     )
     parser.add_argument(
@@ -464,7 +464,7 @@ def _get_args():
     parser.add_argument(
         "--server-name",
         type=str,
-        default="127.0.0.1",
+        default="0.0.0.0",
         help="Demo server name. Default: 127.0.0.1, which is only visible from the local computer."
         " If you want other computers to access your server, use 0.0.0.0 instead.",
     )
