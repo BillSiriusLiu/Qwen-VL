@@ -6,7 +6,7 @@ from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
 # 第一步，加载大模型
 model_dir = '../Qwen-VL-Chat-7B'
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
-model = AutoModel.from_pretrained(model_dir, device_map="cuda", trust_remote_code=True).eval()
+model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="cuda", trust_remote_code=True).eval()
  
 # 第二步，创建FastAPI应用实例
 app = FastAPI()
