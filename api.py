@@ -1,5 +1,4 @@
 import io
-from PIL import Image
 import base64
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -14,11 +13,10 @@ model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="cuda", trust
 # 第二步，创建FastAPI应用实例
 app = FastAPI()
  
-def decode_base64_to_image(base64_string) -> Image:
-    """Convert raw data into Pillow image."""
+def save_base64_image(base64_string, save_path):
     image_data = base64.b64decode(base64_string)
-    image = Image.open(io.BytesIO(image_data))
-    return image
+    with open(save_path, 'wb') as f:
+        f.write(image_data)
 
 # 第三步，定义请求类型，与OpenAI API兼容
 class ChatCompletionRequest(BaseModel):
@@ -36,8 +34,7 @@ def chat_handle(messages: list, max_tokens: int, temperature: float):
         if c["type"] == "text":
             query += c["text"]
         else:
-            image = decode_base64_to_image(c["image"])
-            image.save("tmp/0.jpg")
+            save_base64_image(c["image"], "tmp/0.jpg")
             query += f'<img>tmp/0.jpg</img>'
 
 
