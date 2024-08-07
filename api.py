@@ -1,8 +1,11 @@
+import io
+from PIL import Image
+import base64
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
 from transformers import AutoTokenizer, AutoModel, AutoModelForCausalLM
- 
+
 # 第一步，加载大模型
 model_dir = '../Qwen-VL-Chat-7B'
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
@@ -11,7 +14,12 @@ model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="cuda", trust
 # 第二步，创建FastAPI应用实例
 app = FastAPI()
  
- 
+def decode_base64_to_image(base64_string) -> Image:
+    """Convert raw data into Pillow image."""
+    image_data = base64.b64decode(base64_string)
+    image = Image.open(io.BytesIO(image_data))
+    return image
+
 # 第三步，定义请求类型，与OpenAI API兼容
 class ChatCompletionRequest(BaseModel):
     model: str
@@ -22,7 +30,17 @@ class ChatCompletionRequest(BaseModel):
  
 # 第四步，定义交互函数
 def chat_handle(messages: list, max_tokens: int, temperature: float):
-    query = messages[0]["content"]
+    contents = messages[0]["content"]
+    query = ""
+    for c in contents:
+        if c["type"] == "text":
+            query += c["text"]
+        else:
+            image = decode_base64_to_image(c["image"])
+            image.save("tmp/0.jpg")
+            query += f'<img>tmp/0.jpg</img>'
+
+
     response, history = model.chat(
         tokenizer,
         query=query,
