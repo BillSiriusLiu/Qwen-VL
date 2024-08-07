@@ -34,8 +34,9 @@ def chat_handle(messages: list, max_tokens: int, temperature: float):
         if c["type"] == "text":
             query += c["text"]
         else:
-            save_base64_image(c["image"], "tmp/0.jpg")
-            query += f'<img>tmp/0.jpg</img>'
+            tmp_path = "tmp/0.jpg"
+            save_base64_image(c["image"], tmp_path)
+            query += f'<img>{tmp_path}</img>'
 
 
     response, history = model.chat(
